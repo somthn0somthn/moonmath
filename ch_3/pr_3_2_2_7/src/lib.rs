@@ -1,5 +1,5 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+/* pub fn bin_decomp(num: u64) -> u64 {
+    
 }
 
 #[cfg(test)]
@@ -12,3 +12,4 @@ mod tests {
         assert_eq!(result, 4);
     }
 }
+ */
