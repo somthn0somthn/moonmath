@@ -40,7 +40,7 @@ pub fn t_one() {
 pub fn t_four() {
     let four = "100".to_string();
     assert_eq!(four, num_to_bin_str(4));
-} 
+}
 
 #[test]
 pub fn t_nine() {

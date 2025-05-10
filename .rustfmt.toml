@@ -1,0 +1,12 @@
+# Maximum line width
+max_width = 100
+
+# Comment formatting (requires nightly)
+wrap_comments = true
+comment_width = 100
+normalize_comments = true
+
+# Basic stable options
+tab_spaces = 4
+hard_tabs = false
+newline_style = "Auto"
