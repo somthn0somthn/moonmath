@@ -17,3 +17,7 @@ version = "0.1.0"
 [[package]]
 name = "pr_3_2_2_7"
 version = "0.1.0"
+
+[[package]]
+name = "sum_mul"
+version = "0.1.0"
