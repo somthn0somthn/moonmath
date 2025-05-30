@@ -1,4 +1,4 @@
-// part 1
+use sha2::{Sha256, Digest};
 
 fn get_bit(num: u8, position: u8) -> u8 {
     if position > 7 {
@@ -68,19 +68,36 @@ fn bits_to_bytes(bits: &[u8]) -> Vec<u8> {
         .collect()
 }
 
-// TODO - continue section 3 https://claude.ai/chat/ecff9d10-be5c-4508-b8ae-5232326ec5be
+fn hash_prefix(input: &str) -> [u8; 4] {
+    let dig = Sha256::digest(input);
+    //let res: [u8; 4] = <[u8; 4]>::try_from(&dig[0..4]).unwrap();
+    //let res: [u8; 4] = dig[0..4].try_into().unwrap();
+    let [a, b, c, d, ..]: [u8; 32] = dig.into();
+
+    [a, b, c, d]
+}
+
+fn hash_to_bits(input: &str) -> Vec<u8> {
+    let dig = Sha256::digest(input);
+    let first_b = dig[0].try_into().unwrap();
+
+    byte_to_bits(first_b)
+}
+
+fn hash_with_counter(base: &str, counter: u32)  -> Vec<u8> {
+    let input = format!("{}{}", base, counter);
+    let res: [u8; 32] = Sha256::digest(&input).into();
+
+    res.into()
+}
+
+//TODO: cont from 4. Number Base Conversions & Large Numbers
+// https://claude.ai/chat/ecff9d10-be5c-4508-b8ae-5232326ec5be
 
 fn main() {
-    // let text = "Hello";
-    let hello_bits: [u8; 40] = [
-        0, 1, 0, 0, 1, 0, 0, 0, 
-        0, 1, 1, 0, 0, 1, 0, 1, 
-        0, 1, 1, 0, 1, 1, 0, 0, 
-        0, 1, 1, 0, 1, 1, 0, 0, 
-        0, 1, 1, 0, 1, 1, 1, 1, 
-    ];
-
-    let res = bits_to_bytes(&hello_bits);
+    let base = "password";
+    let res = hash_with_counter(base, 1);
 
     println!("{:?}", res);
+
 }
